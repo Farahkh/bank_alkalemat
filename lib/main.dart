@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: [const Locale('ar')],
-      title: 'بنك الكلمات',
+      title: 'Words Bank',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'بنك الكلمات'),
+      home: MyHomePage(title: 'Words Bank'),
     );
   }
 }
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text('نوع السكون'),
+            Text('Sokon Type'),
             ToggleButtons(
               disabledColor: Colors.black12,
               selectedColor: Colors.deepOrange,
@@ -94,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               isSelected: skonisSelected,
             ),
-            Text('الوزن الايقاعي'),
+            Text('Rhythmic weight'),
             ToggleButtons(
               children: <Widget>[
                 Text('101'),
@@ -116,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               isSelected: rythmeisSelected,
             ),
-            Text('الوزن الصوتي'),
+            Text('Acoustic weight'),
             ToggleButtons(
               children: <Widget>[
                 Text('101'),
