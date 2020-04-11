@@ -1,5 +1,7 @@
 import 'package:bankalkalemat/widgets/drawer.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.title}) : super(key: key);
@@ -10,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List tempList = ['test', 'test', 'test', 'test', 'test', 'test', 'test'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,11 +21,16 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: AppDrawer(),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[],
-        ),
-      ),
+          child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: tempList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Neumorphic(
+                  padding: EdgeInsets.all(50.0),
+                  margin: EdgeInsets.all(10.0),
+                  child: Center(child: Text('Entry ${tempList[index]}')),
+                );
+              })),
     );
   }
 }

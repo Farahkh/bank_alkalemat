@@ -69,26 +69,12 @@ class _AppDrawerState extends State<AppDrawer> {
                 onClick: () {},
               )
             ],
-          )
+          ),
+          SizedBox(
+            height: 25,
+          ),
         ],
       ),
     ));
-  }
-
-  NeumorphicRadio buildNeumorphicRadio(
-      int bottunValue, Function sortController, int groupValue) {
-    return NeumorphicRadio(
-      style: kRadioButtonStyle,
-      padding: EdgeInsets.all(10.0),
-      groupValue: groupValue,
-      value: bottunValue,
-      onChanged: (value) {
-        setState(() {
-          groupValue = value;
-          sortController();
-        });
-      },
-      child: Center(child: Text(bottunValue.toString())),
-    );
   }
 }
