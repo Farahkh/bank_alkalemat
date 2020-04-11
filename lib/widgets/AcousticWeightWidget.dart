@@ -203,70 +203,65 @@ class AcoasticWeightWidgetState extends State<AcoasticWeightWidget> {
             },
             child: Center(child: Text('133')),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              NeumorphicRadio(
-                style: kRadioButtonStyle,
-                padding: Padding_all,
-                groupValue: acoasticGroupValue,
-                value: 201,
-                onChanged: (value) {
-                  setState(() {
-                    acoasticGroupValue = value;
-                  });
-                },
-                child: Center(child: Text('201')),
-              ),
-              NeumorphicRadio(
-                style: kRadioButtonStyle,
-                padding: Padding_all,
-                groupValue: acoasticGroupValue,
-                value: 202,
-                onChanged: (value) {
-                  setState(() {
-                    acoasticGroupValue = value;
-                  });
-                },
-                child: Center(child: Text('202')),
-              ),
-              NeumorphicRadio(
-                style: kRadioButtonStyle,
-                padding: Padding_all,
-                groupValue: acoasticGroupValue,
-                value: 203,
-                onChanged: (value) {
-                  setState(() {
-                    acoasticGroupValue = value;
-                  });
-                },
-                child: Center(child: Text('203')),
-              ),
-              NeumorphicRadio(
-                style: kRadioButtonStyle,
-                padding: Padding_all,
-                groupValue: acoasticGroupValue,
-                value: 210,
-                onChanged: (value) {
-                  setState(() {
-                    acoasticGroupValue = value;
-                  });
-                },
-                child: Center(child: Text('210')),
-              ),
-              NeumorphicRadio(
-                style: kRadioButtonStyle,
-                padding: Padding_all,
-                groupValue: acoasticGroupValue,
-                value: 211,
-                onChanged: (value) {
-                  setState(() {
-                    acoasticGroupValue = value;
-                  });
-                },
-                child: Center(child: Text('211')),
-              ),
-            ],
+          NeumorphicRadio(
+            style: kRadioButtonStyle,
+            padding: Padding_all,
+            groupValue: acoasticGroupValue,
+            value: 201,
+            onChanged: (value) {
+              setState(() {
+                acoasticGroupValue = value;
+              });
+            },
+            child: Center(child: Text('201')),
+          ),
+          NeumorphicRadio(
+            style: kRadioButtonStyle,
+            padding: Padding_all,
+            groupValue: acoasticGroupValue,
+            value: 202,
+            onChanged: (value) {
+              setState(() {
+                acoasticGroupValue = value;
+              });
+            },
+            child: Center(child: Text('202')),
+          ),
+          NeumorphicRadio(
+            style: kRadioButtonStyle,
+            padding: Padding_all,
+            groupValue: acoasticGroupValue,
+            value: 203,
+            onChanged: (value) {
+              setState(() {
+                acoasticGroupValue = value;
+              });
+            },
+            child: Center(child: Text('203')),
+          ),
+          NeumorphicRadio(
+            style: kRadioButtonStyle,
+            padding: Padding_all,
+            groupValue: acoasticGroupValue,
+            value: 210,
+            onChanged: (value) {
+              setState(() {
+                acoasticGroupValue = value;
+              });
+            },
+            child: Center(child: Text('210')),
+          ),
+          NeumorphicRadio(
+            style: kRadioButtonStyle,
+            padding: Padding_all,
+            groupValue: acoasticGroupValue,
+            value: 211,
+            onChanged: (value) {
+              setState(() {
+                acoasticGroupValue = value;
+              });
+            },
+            child: Center(child: Text('211')),
           ),
           NeumorphicRadio(
             style: kRadioButtonStyle,
