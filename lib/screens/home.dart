@@ -16,7 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,11 +62,51 @@ class _HomePageState extends State<HomePage> {
                       ),
                       padding: EdgeInsets.all(20.0),
                       child: Center(
-                        child: Text(
-                          '${snapshot.data.words[index].word}',
-                          style: TextStyle(
-                            fontSize: 30,
-                          ),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              '${snapshot.data.words[index].word}',
+                              style: TextStyle(
+                                fontSize: 36,
+                              ),
+                            ),
+                            Divider(
+                              color: Colors.lightBlueAccent,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Text(
+                                  'نوع السكون',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'الوزن الإيقاعي',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  'الوزن الصوتي',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Text('${snapshot.data.words[index].sokonType}'),
+                                Text(
+                                    '${snapshot.data.words[index].rythmicWieght}'),
+                                Text(
+                                    '${snapshot.data.words[index].soundWieght}'),
+                              ],
+                            ),
+                          ],
                         ),
                       ),
                     ),
