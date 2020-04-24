@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-import '../constants.dart';
 import 'AcousticWeightWidget.dart';
 import 'RythmicWeightWidget.dart';
 import 'SokonTypeWidget.dart';
@@ -21,59 +20,79 @@ class _AppDrawerState extends State<AppDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
         child: SafeArea(
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            leading: Icon(Icons.mic),
-            title: Text('Sokon Type'),
-            onTap: () {
-              // Navigator.pop(context);
-              // Navigator.pushNamed(context, '/');
-            },
+      child: Neumorphic(
+        style: NeumorphicStyle(
+//          depth: -8.0,
+          color: Colors.grey,
+          lightSource: LightSource.topLeft,
+        ),
+        boxShape: NeumorphicBoxShape.roundRect(
+          borderRadius: BorderRadius.circular(5.0),
+        ),
+        padding: EdgeInsets.all(20.0),
+        child: Neumorphic(
+          style: NeumorphicStyle(
+            intensity: 5.0,
+            depth: 4.0,
+            lightSource: LightSource.topLeft,
+            color: Colors.grey[300],
           ),
-          SokonTypeWidget(),
-          ListTile(
-            leading: Icon(Icons.music_note),
-            title: Text('Rythemic Weight'),
-            onTap: () {
-              // Navigator.pop(context);
-              // Navigator.pushNamed(context, '/');
-            },
+          boxShape: NeumorphicBoxShape.roundRect(
+            borderRadius: BorderRadius.circular(10.0),
           ),
-          RythmicWeightWidget(),
-          ListTile(
-            leading: Icon(Icons.radio),
-            title: Text('Acoustic Weight'),
-            onTap: () {
-              //Navigator.pop(context);
-              //Navigator.pushNamed(context, '/');
-            },
-          ),
-          AcoasticWeightWidget(),
-          SizedBox(
-            height: 25,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          padding: EdgeInsets.all(10.0),
+          child: Column(
             children: <Widget>[
-              NeumorphicButton(
-                style: kButtonStyle,
-                child: Text('Sort'),
-                onClick: () {
-                  Navigator.pop(context);
+              ListTile(
+                leading: Icon(
+                  IconData(
+                    65150,
+                  ),
+                  size: 67,
+                ),
+                title: Text(
+                  'نوع السكون',
+                  style: TextStyle(fontSize: 18, color: Colors.black45),
+                ),
+                onTap: () {
+                  // Navigator.pop(context);
+                  // Navigator.pushNamed(context, '/');
                 },
               ),
-              NeumorphicButton(
-                style: kButtonStyle,
-                child: Text('Reset'),
-                onClick: () {},
-              )
+              SokonTypeWidget(),
+              ListTile(
+                leading: Icon(Icons.music_note),
+                title: Text(
+                  'الوزن الإيقاعي',
+                  style: TextStyle(fontSize: 18, color: Colors.black45),
+                ),
+                onTap: () {
+                  // Navigator.pop(context);
+                  // Navigator.pushNamed(context, '/');
+                },
+              ),
+              RythmicWeightWidget(),
+              ListTile(
+                leading: Icon(Icons.radio),
+                title: Text(
+                  'الوزن الصوتي',
+                  style: TextStyle(fontSize: 18, color: Colors.black45),
+                ),
+                onTap: () {
+                  //Navigator.pop(context);
+                  //Navigator.pushNamed(context, '/');
+                },
+              ),
+              AcoasticWeightWidget(),
+              SizedBox(
+                height: 25,
+              ),
+              SizedBox(
+                height: 25,
+              ),
             ],
           ),
-          SizedBox(
-            height: 25,
-          ),
-        ],
+        ),
       ),
     ));
   }

@@ -16,11 +16,12 @@ class App extends StatelessWidget {
       ],
       debugShowCheckedModeBanner: false,
       supportedLocales: [const Locale('ar')],
-      title: 'Words Bank',
+      title: 'الكلمات الثلاثية',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.grey,
+        secondaryHeaderColor: Colors.white,
       ),
-      home: HomePage(title: 'Word Bank'),
+      home: HomePage(title: 'الكلمات الثلاثية'),
     );
   }
 }

@@ -1,6 +1,10 @@
+import 'dart:convert';
+
+import 'package:bankalkalemat/WordsBankModel.dart';
 import 'package:bankalkalemat/widgets/drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,25 +16,87 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List tempList = ['test', 'test', 'test', 'test', 'test', 'test', 'test'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[IconButton(icon: Icon(Icons.brightness_3))],
         title: Text(widget.title),
       ),
       drawer: AppDrawer(),
       body: Center(
-          child: ListView.builder(
-              padding: const EdgeInsets.all(8),
-              itemCount: tempList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Neumorphic(
-                  padding: EdgeInsets.all(50.0),
-                  margin: EdgeInsets.all(10.0),
-                  child: Center(child: Text('Entry ${tempList[index]}')),
-                );
-              })),
+        child: FutureBuilder<WordBankModel>(
+          future: getData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.builder(
+                itemCount: snapshot.data.words.length,
+                itemBuilder: (context, index) {
+                  return Neumorphic(
+                    style: NeumorphicStyle(
+                      intensity: 0.5,
+                      depth: 4,
+                      surfaceIntensity: 0.25,
+                      shape: NeumorphicShape.concave,
+                      color: Colors.white,
+                      lightSource: LightSource(2.0, 1.0),
+                      oppositeShadowLightSource: false,
+                    ),
+                    boxShape: NeumorphicBoxShape.roundRect(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    padding: EdgeInsets.all(10.0),
+                    margin: EdgeInsets.all(10.0),
+                    child: Neumorphic(
+                      style: NeumorphicStyle(
+                        intensity: 0.5,
+                        depth: 4,
+                        surfaceIntensity: 0.25,
+                        shape: NeumorphicShape.concave,
+                        color: Colors.white,
+                        lightSource: LightSource(2.0, 1.0),
+                        oppositeShadowLightSource: false,
+                      ),
+                      boxShape: NeumorphicBoxShape.roundRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      padding: EdgeInsets.all(20.0),
+                      child: Center(
+                        child: Text(
+                          '${snapshot.data.words[index].word}',
+                          style: TextStyle(
+                            fontSize: 30,
+                          ),
+                        ),
+                      ),
+                    ),
+                  );
+                },
+              );
+            } else if (snapshot.hasError) {
+              return Text("${snapshot.error}");
+            }
+            return CircularProgressIndicator();
+          },
+        ),
+      ),
     );
+  }
+
+  Future<WordBankModel> getData() async {
+    wait(5);
+    String jsonString = await _loadAWordBankAsset();
+    final jsonResult = json.decode(jsonString);
+
+    return WordBankModel.fromJson(jsonResult);
+  }
+
+  Future<String> _loadAWordBankAsset() async {
+    return await rootBundle.loadString('data/databank.json');
+  }
+
+  Future wait(int seconds) {
+    return new Future.delayed(Duration(seconds: seconds), () => {});
   }
 }
