@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:provider/provider.dart';
 
+import '../Filterparameters.dart';
+import '../WordsBankModel.dart';
 import '../constants.dart';
 
 class SokonTypeWidget extends StatefulWidget {
@@ -14,8 +18,10 @@ class SokonTypeWidget extends StatefulWidget {
 class SokonTypeWidgetState extends State<SokonTypeWidget> {
   int sokonGroupValue;
 
+
   @override
   Widget build(BuildContext context) {
+    Filter filter = Provider.of<Filter>(context);
     return Neumorphic(
       padding: EdgeInsets.all(10.0),
       style: NeumorphicStyle(
@@ -31,6 +37,7 @@ class SokonTypeWidgetState extends State<SokonTypeWidget> {
             groupValue: sokonGroupValue,
             value: 0,
             onChanged: (value) {
+              filter.sokonType = value;
               setState(() {
                 sokonGroupValue = value;
               });
@@ -43,6 +50,7 @@ class SokonTypeWidgetState extends State<SokonTypeWidget> {
             groupValue: sokonGroupValue,
             value: 1,
             onChanged: (value) {
+              filter.sokonType = value;
               setState(() {
                 sokonGroupValue = value;
               });
@@ -55,6 +63,7 @@ class SokonTypeWidgetState extends State<SokonTypeWidget> {
             groupValue: sokonGroupValue,
             value: 2,
             onChanged: (value) {
+              filter.sokonType = value;
               setState(() {
                 sokonGroupValue = value;
               });
@@ -67,6 +76,7 @@ class SokonTypeWidgetState extends State<SokonTypeWidget> {
             groupValue: sokonGroupValue,
             value: 3,
             onChanged: (value) {
+              filter.sokonType = value;
               setState(() {
                 sokonGroupValue = value;
               });
@@ -79,6 +89,7 @@ class SokonTypeWidgetState extends State<SokonTypeWidget> {
             groupValue: sokonGroupValue,
             value: 4,
             onChanged: (value) {
+              filter.sokonType = value;
               setState(() {
                 sokonGroupValue = value;
               });
@@ -91,17 +102,17 @@ class SokonTypeWidgetState extends State<SokonTypeWidget> {
             groupValue: sokonGroupValue,
             value: 5,
             onChanged: (value) {
+              filter.sokonType = value;
               setState(() {
                 sokonGroupValue = value;
               });
             },
             child: Center(child: Text('5')),
-          ), //            buildNeumorphicRadio('2', null),
-//            buildNeumorphicRadio('3', null),
-//            buildNeumorphicRadio('4', null),
-//            buildNeumorphicRadio('5', null),
+          ),
         ],
       ),
     );
   }
+
+
 }

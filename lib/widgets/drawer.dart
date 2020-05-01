@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:provider/provider.dart';
 
+import '../Filterparameters.dart';
 import 'AcousticWeightWidget.dart';
 import 'RythmicWeightWidget.dart';
 import 'SokonTypeWidget.dart';
@@ -16,15 +18,16 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
         child: SafeArea(
-      child: Neumorphic(
-        style: NeumorphicStyle(
-//          depth: -8.0,
-          color: Colors.grey,
-          lightSource: LightSource.topLeft,
+          child: Neumorphic(
+          style: NeumorphicStyle(
+          depth: -8.0,
+            color: Colors.grey,
+            lightSource: LightSource.topLeft,
         ),
         boxShape: NeumorphicBoxShape.roundRect(
           borderRadius: BorderRadius.circular(5.0),
@@ -96,4 +99,6 @@ class _AppDrawerState extends State<AppDrawer> {
       ),
     ));
   }
+
+
 }
