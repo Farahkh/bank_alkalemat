@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:provider/provider.dart';
 
+import '../Filterparameters.dart';
 import '../constants.dart';
 
 class AcoasticWeightWidget extends StatefulWidget {
@@ -16,7 +18,9 @@ class AcoasticWeightWidgetState extends State<AcoasticWeightWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final Padding_all = EdgeInsets.all(8.0);
+    acoasticGroupValue = Provider.of<Filter>(context, listen: false).soundWieght;
+
+    const padding_all = EdgeInsets.all(8.0);
     return Expanded(
       child: Neumorphic(
         padding: EdgeInsets.all(10.0),
@@ -29,453 +33,61 @@ class AcoasticWeightWidgetState extends State<AcoasticWeightWidget> {
           crossAxisSpacing: 15.0,
           mainAxisSpacing: 15.0,
           children: <Widget>[
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 101,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('101')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 102,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('102')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 103,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('103')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 110,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('110')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 111,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('111')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 112,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('112')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 113,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('113')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 120,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('120')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 121,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('121')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 122,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('122')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 123,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('123')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 130,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('130')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 131,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('131')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 132,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('132')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 133,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('133')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 201,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('201')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 202,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('202')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 203,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('203')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 210,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('210')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 211,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('211')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 212,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('212')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 101,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('101')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 220,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('220')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 223,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('223')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 230,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('230')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 233,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('233')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 301,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('301')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 302,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('302')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 303,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('303')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 310,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('310')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 311,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('311')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 320,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('320')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 321,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('321')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 322,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('322')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 331,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('331')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 332,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('332')),
-            ),
-            NeumorphicRadio(
-              style: kRadioButtonStyle,
-              padding: Padding_all,
-              groupValue: acoasticGroupValue,
-              value: 333,
-              onChanged: (value) {
-                setState(() {
-                  acoasticGroupValue = value;
-                });
-              },
-              child: Center(child: Text('333')),
-            ),
+            buildNeumorphicRadio(context,101),
+            buildNeumorphicRadio(context,102),
+            buildNeumorphicRadio(context,103),
+            buildNeumorphicRadio(context,110),
+            buildNeumorphicRadio(context,111),
+            buildNeumorphicRadio(context,112),
+            buildNeumorphicRadio(context,113),
+            buildNeumorphicRadio(context,120),
+            buildNeumorphicRadio(context,121),
+            buildNeumorphicRadio(context,122),
+            buildNeumorphicRadio(context,123),
+            buildNeumorphicRadio(context,130),
+            buildNeumorphicRadio(context,131),
+            buildNeumorphicRadio(context,132),
+            buildNeumorphicRadio(context,133),
+            buildNeumorphicRadio(context,201),
+            buildNeumorphicRadio(context,202),
+            buildNeumorphicRadio(context,203),
+            buildNeumorphicRadio(context,210),
+            buildNeumorphicRadio(context,211),
+            buildNeumorphicRadio(context,212),
+            buildNeumorphicRadio(context,213),
+            buildNeumorphicRadio(context,220),
+            buildNeumorphicRadio(context,223),
+            buildNeumorphicRadio(context,230),
+            buildNeumorphicRadio(context,233),
+            buildNeumorphicRadio(context,301),
+            buildNeumorphicRadio(context,302),
+            buildNeumorphicRadio(context,303),
+            buildNeumorphicRadio(context,310),
+            buildNeumorphicRadio(context,311),
+            buildNeumorphicRadio(context,320),
+            buildNeumorphicRadio(context,321),
+            buildNeumorphicRadio(context,322),
+            buildNeumorphicRadio(context,331),
+            buildNeumorphicRadio(context,332),
+            buildNeumorphicRadio(context,333),
           ],
         ),
       ),
+    );
+  }
+
+  NeumorphicRadio<int> buildNeumorphicRadio(BuildContext context, int buttonValue) {
+    return NeumorphicRadio(
+      style: kRadioButtonStyle,
+      padding: EdgeInsets.all(5.0),
+      groupValue: acoasticGroupValue,
+      value: buttonValue,
+      onChanged: (value) {
+        setState(() {
+          Provider.of<Filter>(context, listen: false).soundWieght = value;
+        });
+      },
+      child: Center(child: Text(buttonValue.toString())),
     );
   }
 }

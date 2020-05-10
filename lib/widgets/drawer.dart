@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:provider/provider.dart';
 
-import '../Filterparameters.dart';
 import 'AcousticWeightWidget.dart';
 import 'RythmicWeightWidget.dart';
 import 'SokonTypeWidget.dart';

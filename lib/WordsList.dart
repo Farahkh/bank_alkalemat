@@ -10,7 +10,6 @@ class WordList extends ChangeNotifier {
   WordBankModel wordsList;
   Filter filer;
 
-  WordList(){}
 
   Future<WordBankModel> loadList() async {
     String jsonString = await _loadAWordBankAsset();
@@ -23,16 +22,16 @@ class WordList extends ChangeNotifier {
     return wordsList;
   }
 
-  void FilterList(String sokonType,
+  void filterList(String sokonType,
   String rythmicWieght,
   String soundWieght) {
     List words = wordsList.words;
-    List filteredWords = words.where((e) =>
+     words.where((e) =>
     e.sokonType == sokonType ||
         e.soundWieght == soundWieght ||
         e.rythmicWieght == rythmicWieght)
         .toList();
-    WordBankModel(words: filteredWords);
+//    WordBankModel(words: filteredWords);
     notifyListeners();
 
 

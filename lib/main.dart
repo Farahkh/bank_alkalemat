@@ -1,4 +1,3 @@
-import 'package:bankalkalemat/WordsBankModel.dart';
 import 'package:bankalkalemat/screens/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'Filterparameters.dart';
 
 void main() => runApp(
-      FutureProvider<Filter>(create:(_) async=>  Filter(),child: App()),
+      ChangeNotifierProvider<Filter>(create: (_)=> Filter(),child: App()),
     );
 
 class App extends StatelessWidget {

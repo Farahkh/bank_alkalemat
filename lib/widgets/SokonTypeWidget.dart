@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 import '../Filterparameters.dart';
-import '../WordsBankModel.dart';
 import '../constants.dart';
 
 class SokonTypeWidget extends StatefulWidget {
@@ -21,7 +19,7 @@ class SokonTypeWidgetState extends State<SokonTypeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    Filter filter = Provider.of<Filter>(context);
+    sokonGroupValue=Provider.of<Filter>(context, listen: false).sokonType;
     return Neumorphic(
       padding: EdgeInsets.all(10.0),
       style: NeumorphicStyle(
@@ -31,87 +29,31 @@ class SokonTypeWidgetState extends State<SokonTypeWidget> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          NeumorphicRadio(
-            style: kRadioButtonStyle,
-            padding: EdgeInsets.all(10.0),
-            groupValue: sokonGroupValue,
-            value: 0,
-            onChanged: (value) {
-              filter.sokonType = value;
-              setState(() {
-                sokonGroupValue = value;
-              });
-            },
-            child: Center(child: Text('0')),
-          ),
-          NeumorphicRadio(
-            style: kRadioButtonStyle,
-            padding: EdgeInsets.all(10.0),
-            groupValue: sokonGroupValue,
-            value: 1,
-            onChanged: (value) {
-              filter.sokonType = value;
-              setState(() {
-                sokonGroupValue = value;
-              });
-            },
-            child: Center(child: Text('1')),
-          ),
-          NeumorphicRadio(
-            style: kRadioButtonStyle,
-            padding: EdgeInsets.all(10.0),
-            groupValue: sokonGroupValue,
-            value: 2,
-            onChanged: (value) {
-              filter.sokonType = value;
-              setState(() {
-                sokonGroupValue = value;
-              });
-            },
-            child: Center(child: Text('2')),
-          ),
-          NeumorphicRadio(
-            style: kRadioButtonStyle,
-            padding: EdgeInsets.all(10.0),
-            groupValue: sokonGroupValue,
-            value: 3,
-            onChanged: (value) {
-              filter.sokonType = value;
-              setState(() {
-                sokonGroupValue = value;
-              });
-            },
-            child: Center(child: Text('3')),
-          ),
-          NeumorphicRadio(
-            style: kRadioButtonStyle,
-            padding: EdgeInsets.all(10.0),
-            groupValue: sokonGroupValue,
-            value: 4,
-            onChanged: (value) {
-              filter.sokonType = value;
-              setState(() {
-                sokonGroupValue = value;
-              });
-            },
-            child: Center(child: Text('4')),
-          ),
-          NeumorphicRadio(
-            style: kRadioButtonStyle,
-            padding: EdgeInsets.all(10.0),
-            groupValue: sokonGroupValue,
-            value: 5,
-            onChanged: (value) {
-              filter.sokonType = value;
-              setState(() {
-                sokonGroupValue = value;
-              });
-            },
-            child: Center(child: Text('5')),
-          ),
+          buildNeumorphicRadio(context,0),
+          buildNeumorphicRadio(context,1),
+          buildNeumorphicRadio(context,2),
+          buildNeumorphicRadio(context,3),
+          buildNeumorphicRadio(context,4),
+          buildNeumorphicRadio(context,5),
         ],
       ),
     );
+  }
+
+  NeumorphicRadio<int> buildNeumorphicRadio(BuildContext context, int buttonValue) {
+    return NeumorphicRadio(
+          style: kRadioButtonStyle,
+          padding: EdgeInsets.all(10.0),
+          groupValue: sokonGroupValue,
+          value: buttonValue,
+          onChanged: (value) {
+            setState(() {
+              Provider.of<Filter>(context, listen: false).sokonType = value;
+
+            });
+          },
+          child: Center(child: Text(buttonValue.toString())),
+        );
   }
 
 
