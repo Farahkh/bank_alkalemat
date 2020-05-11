@@ -23,7 +23,10 @@ class RythmicWeightWidgetState extends State<RythmicWeightWidget> {
     return Neumorphic(
       padding: EdgeInsets.all(10.0),
       style: NeumorphicStyle(
-        color: Colors.grey[300],
+        border: NeumorphicBorder(
+          color: Color(0x20000000),
+          width: 0.4,
+        ),
         depth: -5.0,
       ),
       child: Row(
@@ -39,7 +42,6 @@ class RythmicWeightWidgetState extends State<RythmicWeightWidget> {
 
   NeumorphicRadio<int> buildNeumorphicRadio(BuildContext context, int buttonValue) {
     return NeumorphicRadio(
-          style: kRadioButtonStyle,
           padding: EdgeInsets.all(10.0),
           groupValue: rythemicGroupValue,
           value: buttonValue,
@@ -48,7 +50,7 @@ class RythmicWeightWidgetState extends State<RythmicWeightWidget> {
               Provider.of<Filter>(context, listen: false).rythmicWieght = value;
             });
           },
-          child: Center(child: Text(buttonValue.toString())),
+          child: Center(child: Text(buttonValue.toString(), style: TextStyle(color:NeumorphicTheme.currentTheme(context).defaultTextColor,),)),
         );
   }
 }

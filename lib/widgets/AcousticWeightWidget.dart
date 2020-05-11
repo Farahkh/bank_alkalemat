@@ -25,7 +25,10 @@ class AcoasticWeightWidgetState extends State<AcoasticWeightWidget> {
       child: Neumorphic(
         padding: EdgeInsets.all(10.0),
         style: NeumorphicStyle(
-          color: Colors.grey[300],
+          border: NeumorphicBorder(
+            color: Color(0x20000000),
+            width: 0.4,
+          ),
           depth: -5.0,
         ),
         child: GridView.count(
@@ -78,7 +81,6 @@ class AcoasticWeightWidgetState extends State<AcoasticWeightWidget> {
 
   NeumorphicRadio<int> buildNeumorphicRadio(BuildContext context, int buttonValue) {
     return NeumorphicRadio(
-      style: kRadioButtonStyle,
       padding: EdgeInsets.all(5.0),
       groupValue: acoasticGroupValue,
       value: buttonValue,
@@ -87,7 +89,7 @@ class AcoasticWeightWidgetState extends State<AcoasticWeightWidget> {
           Provider.of<Filter>(context, listen: false).soundWieght = value;
         });
       },
-      child: Center(child: Text(buttonValue.toString())),
+      child: Center(child: Text(buttonValue.toString(), style: TextStyle(color:NeumorphicTheme.currentTheme(context).defaultTextColor,),)),
     );
   }
 }
