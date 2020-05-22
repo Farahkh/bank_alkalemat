@@ -1,11 +1,11 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-final kRadioButtonStyle = NeumorphicRadioStyle(
-  shape: NeumorphicShape.concave,
-  unselectedDepth: 5.0,
-  selectedDepth: -5.0,
-);
-final kButtonStyle = NeumorphicStyle(
-  shape: NeumorphicShape.concave,
-  surfaceIntensity: 0.5,
-);
+NeumorphicRadioStyle kRadioButtonStyle(BuildContext context) {
+  return NeumorphicRadioStyle(
+    shape: NeumorphicShape.concave,
+
+    selectedColor: NeumorphicTheme.accentColor(context),
+    intensity: 0.8,
+    border: NeumorphicBorder(color: Color(0xFFBDBEBF), isEnabled: true),
+  );
+}

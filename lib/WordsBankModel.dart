@@ -1,3 +1,8 @@
+import 'dart:convert';
+
+import 'package:bankalkalemat/Filterparameters.dart';
+import 'package:flutter/services.dart';
+
 import 'WordModel.dart';
 
 class WordBankModel {
@@ -11,4 +16,15 @@ class WordBankModel {
 
     return WordBankModel(words: words);
   }
+
+  static Future<WordBankModel> getData() async {
+    String jsonString = await rootBundle.loadString('data/databank.json');
+    final jsonResult = json.decode(jsonString);
+
+    return WordBankModel.fromJson(jsonResult);
+  }
+
+
+
+
 }

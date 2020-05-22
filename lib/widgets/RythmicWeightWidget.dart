@@ -5,21 +5,11 @@ import 'package:provider/provider.dart';
 import '../Filterparameters.dart';
 import '../constants.dart';
 
-class RythmicWeightWidget extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() {
-    // TODO: implement createState
-    return RythmicWeightWidgetState();
-  }
-}
-
-class RythmicWeightWidgetState extends State<RythmicWeightWidget> {
+class RythmicWeightWidget extends StatelessWidget {
   int rythemicGroupValue;
 
   @override
   Widget build(BuildContext context) {
-    rythemicGroupValue = Provider.of<Filter>(context, listen: false).rythmicWieght;
-
     return Neumorphic(
       padding: EdgeInsets.all(10.0),
       style: NeumorphicStyle(
@@ -29,28 +19,38 @@ class RythmicWeightWidgetState extends State<RythmicWeightWidget> {
         ),
         depth: -5.0,
       ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          buildNeumorphicRadio(context,110),
-          buildNeumorphicRadio(context,111),
-          buildNeumorphicRadio(context,101),
-        ],
-      ),
+      child: Consumer<Filter>(builder: (context, filter, child) {
+        rythemicGroupValue = filter.rythmicWieght;
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            buildNeumorphicRadio(context, 110, filter),
+            buildNeumorphicRadio(context, 111, filter),
+            buildNeumorphicRadio(context, 101, filter),
+          ],
+        );
+      }),
     );
   }
 
-  NeumorphicRadio<int> buildNeumorphicRadio(BuildContext context, int buttonValue) {
+  NeumorphicRadio<int> buildNeumorphicRadio(
+      BuildContext context, int buttonValue, Filter filter) {
     return NeumorphicRadio(
-          padding: EdgeInsets.all(10.0),
-          groupValue: rythemicGroupValue,
-          value: buttonValue,
-          onChanged: (value) {
-            setState(() {
-              Provider.of<Filter>(context, listen: false).rythmicWieght = value;
-            });
-          },
-          child: Center(child: Text(buttonValue.toString(), style: TextStyle(color:NeumorphicTheme.currentTheme(context).defaultTextColor,),)),
-        );
+      isEnabled: filter.rythmicButtonStatus(buttonValue),
+      style: kRadioButtonStyle(context),
+      padding: EdgeInsets.all(10.0),
+      groupValue: rythemicGroupValue,
+      value: buttonValue,
+      onChanged: (value) {
+        filter.rythmicWieght = value;
+      },
+      child: Center(
+          child: Text(
+        buttonValue.toString(),
+        style: TextStyle(
+          color: NeumorphicTheme.currentTheme(context).defaultTextColor,
+        ),
+      )),
+    );
   }
 }

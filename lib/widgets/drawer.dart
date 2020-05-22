@@ -36,9 +36,10 @@ class _AppDrawerState extends State<AppDrawer> {
               ListTile(
                 leading: Icon(
                   IconData(
-                    65150,
+                    1781,
                   ),
-                  size: 67,
+                  size: 28,
+                  color: NeumorphicTheme.currentTheme(context).defaultTextColor,
                 ),
                 title: Text(
                   'نوع السكون',
@@ -51,7 +52,13 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               SokonTypeWidget(),
               ListTile(
-                leading: Icon(Icons.music_note),
+                leading: Icon(
+                  IconData(
+                    1769,
+                  ),
+                  size: 28,
+                  color: NeumorphicTheme.currentTheme(context).defaultTextColor,
+                ),
                 title: Text(
                   'الوزن الإيقاعي',
                   style: TextStyle(fontSize: 18,color:NeumorphicTheme.currentTheme(context).defaultTextColor,),
@@ -63,7 +70,13 @@ class _AppDrawerState extends State<AppDrawer> {
               ),
               RythmicWeightWidget(),
               ListTile(
-                leading: Icon(Icons.radio),
+                leading: Icon(
+                  IconData(
+                    64413,
+                  ),
+                  size: 28,
+                  color: NeumorphicTheme.currentTheme(context).defaultTextColor,
+                ),
                 title: Text(
                   'الوزن الصوتي',
                   style: TextStyle(fontSize: 18,color:NeumorphicTheme.currentTheme(context).defaultTextColor,),
