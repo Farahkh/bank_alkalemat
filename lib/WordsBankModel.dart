@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:bankalkalemat/Filterparameters.dart';
 import 'package:flutter/services.dart';
 
 import 'WordModel.dart';

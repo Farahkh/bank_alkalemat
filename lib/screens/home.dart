@@ -9,15 +9,10 @@ import 'package:provider/provider.dart';
 
 import '../Filterparameters.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   HomePage({Key key, this.title}) : super(key: key);
   final String title;
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,13 +29,13 @@ class _HomePageState extends State<HomePage> {
                   ? Icon(Icons.wb_sunny)
                   : Icon(Icons.brightness_3))
         ],
-        title: Text(widget.title),
+        title: Text(title),
       ),
       drawer: AppDrawer(),
       body: NeumorphicBackground(
         child: Center(
           child: Consumer<Filter>(builder: (context, filter, child) {
-            print('params is: ${filter.params}');
+//            print('params is: ${filter.params}');
             return FutureBuilder(
                 future: WordBankModel.getData(),
                 builder: (BuildContext context,
@@ -50,7 +45,6 @@ class _HomePageState extends State<HomePage> {
                     if (filter.params.isNotEmpty) {
                       wordsList = filter.filterList(wordsList);
                     }
-//                    print("words list value is: ${wordsList.words}");
                     return ListView.builder(
                       itemCount: wordsList.words.length,
                       itemBuilder: (context, index) {

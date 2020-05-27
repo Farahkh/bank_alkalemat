@@ -15,14 +15,13 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       localizationsDelegates: [
-        // ... app-specific localization delegate[s] here
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
       debugShowCheckedModeBanner: false,
       supportedLocales: [const Locale('ar')],
-      title: 'الكلمات الثلاثية',
+      title: 'بنك الكلمات القراَنية',
       theme: ThemeData(
         primaryColor: Colors.cyan[900],
       ),
@@ -45,7 +44,7 @@ class App extends StatelessWidget {
             lightSource: LightSource.topLeft,
             depth: 4,
           ),
-          child: HomePage(title: 'الكلمات الثلاثية')),
+          child: HomePage(title: 'بنك الكلمات القراَنية')),
     );
   }
 }

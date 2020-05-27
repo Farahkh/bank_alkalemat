@@ -6,22 +6,16 @@ import 'AcousticWeightWidget.dart';
 import 'RythmicWeightWidget.dart';
 import 'SokonTypeWidget.dart';
 
-class AppDrawer extends StatefulWidget {
+class AppDrawer extends StatelessWidget {
   const AppDrawer({
     Key key,
   }) : super(key: key);
 
   @override
-  _AppDrawerState createState() => _AppDrawerState();
-}
-
-class _AppDrawerState extends State<AppDrawer> {
-
-  @override
   Widget build(BuildContext context) {
     return Drawer(
         child: SafeArea(
-          child: Neumorphic(
+      child: Neumorphic(
         boxShape: NeumorphicBoxShape.roundRect(
           BorderRadius.circular(5.0),
         ),
@@ -43,7 +37,11 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 title: Text(
                   'نوع السكون',
-                  style: TextStyle(fontSize: 18,color:NeumorphicTheme.currentTheme(context).defaultTextColor,),
+                  style: TextStyle(
+                    fontSize: 18,
+                    color:
+                        NeumorphicTheme.currentTheme(context).defaultTextColor,
+                  ),
                 ),
                 onTap: () {
                   // Navigator.pop(context);
@@ -61,7 +59,11 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 title: Text(
                   'الوزن الإيقاعي',
-                  style: TextStyle(fontSize: 18,color:NeumorphicTheme.currentTheme(context).defaultTextColor,),
+                  style: TextStyle(
+                    fontSize: 18,
+                    color:
+                        NeumorphicTheme.currentTheme(context).defaultTextColor,
+                  ),
                 ),
                 onTap: () {
                   // Navigator.pop(context);
@@ -79,7 +81,11 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
                 title: Text(
                   'الوزن الصوتي',
-                  style: TextStyle(fontSize: 18,color:NeumorphicTheme.currentTheme(context).defaultTextColor,),
+                  style: TextStyle(
+                    fontSize: 18,
+                    color:
+                        NeumorphicTheme.currentTheme(context).defaultTextColor,
+                  ),
                 ),
                 onTap: () {
                   //Navigator.pop(context);
@@ -99,6 +105,4 @@ class _AppDrawerState extends State<AppDrawer> {
       ),
     ));
   }
-
-
 }

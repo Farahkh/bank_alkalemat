@@ -132,11 +132,8 @@ class Filter with ChangeNotifier {
     rythmicActiveButtons.clear();
     wordsList.forEach((element) {
       sokonActiveButtons.add(element.sokonType);
-      print('soundActiveButtons is $sokonActiveButtons');
       rythmicActiveButtons.add(element.rythmicWieght);
-      print('rythmicActiveButtons is $rythmicActiveButtons');
       soundActiveButtons.add(element.soundWieght);
-      print('soundActiveButtons is $soundActiveButtons');
     });
   }
 
