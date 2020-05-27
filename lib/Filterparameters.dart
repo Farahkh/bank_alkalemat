@@ -82,12 +82,11 @@ class Filter with ChangeNotifier {
 
   WordBankModel filterList(WordBankModel wordsList) {
     for (int i = 0; i <= params.length - 1; i++) {
-      print('the key at index $i is ${params.keys.elementAt(i)}');
       if (i == 0) {
         switch (params.keys.elementAt(0)) {
           case 'sokonType':
             words = wordsList.words
-                .where((e) => e.sokonType == params['sokonType'].toString())
+                .where((e) => e.sokonType == params['sokonType'].toString() )
                 .toList();
             break;
           case 'rythmicWieght':
@@ -105,18 +104,18 @@ class Filter with ChangeNotifier {
       } else {
         switch (params.keys.elementAt(i)) {
           case 'sokonType':
-            words = wordsList.words
+            words = words
                 .where((e) => e.sokonType == params['sokonType'].toString())
                 .toList();
             break;
           case 'rythmicWieght':
-            words = wordsList.words
+            words = words
                 .where((e) =>
                     e.rythmicWieght == params['rythmicWieght'].toString())
                 .toList();
             break;
           case 'soundWieght':
-            words = wordsList.words
+            words = words
                 .where((e) => e.soundWieght == params['soundWieght'].toString())
                 .toList();
             break;
