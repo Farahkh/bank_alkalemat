@@ -12,7 +12,6 @@ class AcoasticWeightWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    const padding_all = EdgeInsets.all(8.0);
     return Expanded(
       child: Neumorphic(
         padding: EdgeInsets.all(5.0),

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:bankalkalemat/WordsBankModel.dart';
 import 'package:bankalkalemat/widgets/drawer.dart';
 import 'package:flutter/cupertino.dart';
