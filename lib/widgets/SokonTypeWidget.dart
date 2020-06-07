@@ -7,6 +7,7 @@ import '../constants.dart';
 
 class SokonTypeWidget extends StatelessWidget {
   int sokonGroupValue;
+  List sokonTypeGroup = [0,1,2,3,4,5];
 
   @override
   Widget build(BuildContext context) {
@@ -20,41 +21,43 @@ class SokonTypeWidget extends StatelessWidget {
         depth: -5.0,
       ),
       child: Consumer<Filter>(builder: (context, filter, child) {
-        sokonGroupValue = Provider.of<Filter>(context, listen: false).sokonType;
+        sokonGroupValue = filter.sokonType;
 
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            buildNeumorphicRadio(context, 0, filter),
-            buildNeumorphicRadio(context, 1, filter),
-            buildNeumorphicRadio(context, 2, filter),
-            buildNeumorphicRadio(context, 3, filter),
-            buildNeumorphicRadio(context, 4, filter),
-            buildNeumorphicRadio(context, 5, filter),
+            ...buildNeumorphicRadio(context, filter),
+
           ],
         );
       }),
     );
   }
 
-  NeumorphicRadio<int> buildNeumorphicRadio(
-      BuildContext context, int buttonValue, Filter filter) {
-    return NeumorphicRadio(
-      isEnabled: filter.sokonButtonStatus(buttonValue),
-      style: kRadioButtonStyle(context),
-      padding: EdgeInsets.all(10.0),
-      groupValue: sokonGroupValue,
-      value: buttonValue,
-      onChanged: (value) {
-        filter.sokonType = value;
-      },
-      child: Center(
-          child: Text(
-        buttonValue.toString(),
-        style: TextStyle(
-          color: NeumorphicTheme.currentTheme(context).defaultTextColor,
-        ),
-      )),
-    );
+  List<NeumorphicRadio> buildNeumorphicRadio(
+      BuildContext context, Filter filter) {
+    List<NeumorphicRadio> radioButtonsList = new List();
+    sokonTypeGroup.forEach((element) {
+      if (filter.sokonButtonStatus(element))
+        radioButtonsList.add(
+          NeumorphicRadio(
+            style: kRadioButtonStyle(context),
+            padding: EdgeInsets.all(10.0),
+            groupValue: sokonGroupValue,
+            value: element,
+            onChanged: (value) {
+              filter.sokonType = value;
+            },
+            child: Center(
+                child: Text(
+              element.toString(),
+              style: TextStyle(
+                color: NeumorphicTheme.currentTheme(context).defaultTextColor,
+              ),
+            )),
+          ),
+        );
+    });
+    return radioButtonsList;
   }
 }

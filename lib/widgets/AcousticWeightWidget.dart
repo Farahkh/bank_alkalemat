@@ -8,6 +8,7 @@ import '../constants.dart';
 class AcoasticWeightWidget extends StatelessWidget {
 
   int acoasticGroupValue;
+  List soundWieghtGroup= [101, 102, 103, 110, 111, 112, 113, 120, 121, 122, 123, 130, 131, 132, 133, 201, 202, 203, 210, 211, 212, 213, 220, 223, 230, 233, 301, 302, 303, 310, 311, 320, 321, 322, 331, 332, 333];
 
   @override
   Widget build(BuildContext context) {
@@ -31,43 +32,8 @@ class AcoasticWeightWidget extends StatelessWidget {
             crossAxisSpacing: 15.0,
             mainAxisSpacing: 15.0,
             children: <Widget>[
-              buildNeumorphicRadio(context, 101, filter),
-              buildNeumorphicRadio(context, 102, filter),
-              buildNeumorphicRadio(context, 103, filter),
-              buildNeumorphicRadio(context, 110, filter),
-              buildNeumorphicRadio(context, 111, filter),
-              buildNeumorphicRadio(context, 112, filter),
-              buildNeumorphicRadio(context, 113, filter),
-              buildNeumorphicRadio(context, 120, filter),
-              buildNeumorphicRadio(context, 121, filter),
-              buildNeumorphicRadio(context, 122, filter),
-              buildNeumorphicRadio(context, 123, filter),
-              buildNeumorphicRadio(context, 130, filter),
-              buildNeumorphicRadio(context, 131, filter),
-              buildNeumorphicRadio(context, 132, filter),
-              buildNeumorphicRadio(context, 133, filter),
-              buildNeumorphicRadio(context, 201, filter),
-              buildNeumorphicRadio(context, 202, filter),
-              buildNeumorphicRadio(context, 203, filter),
-              buildNeumorphicRadio(context, 210, filter),
-              buildNeumorphicRadio(context, 211, filter),
-              buildNeumorphicRadio(context, 212, filter),
-              buildNeumorphicRadio(context, 213, filter),
-              buildNeumorphicRadio(context, 220, filter),
-              buildNeumorphicRadio(context, 223, filter),
-              buildNeumorphicRadio(context, 230, filter),
-              buildNeumorphicRadio(context, 233, filter),
-              buildNeumorphicRadio(context, 301, filter),
-              buildNeumorphicRadio(context, 302, filter),
-              buildNeumorphicRadio(context, 303, filter),
-              buildNeumorphicRadio(context, 310, filter),
-              buildNeumorphicRadio(context, 311, filter),
-              buildNeumorphicRadio(context, 320, filter),
-              buildNeumorphicRadio(context, 321, filter),
-              buildNeumorphicRadio(context, 322, filter),
-              buildNeumorphicRadio(context, 331, filter),
-              buildNeumorphicRadio(context, 332, filter),
-              buildNeumorphicRadio(context, 333, filter),
+              ...buildNeumorphicRadio(context, filter),
+
             ],
           );
         }),
@@ -75,24 +41,32 @@ class AcoasticWeightWidget extends StatelessWidget {
     );
   }
 
-  NeumorphicRadio<int> buildNeumorphicRadio(
-      BuildContext context, int buttonValue, Filter filter) {
-    return NeumorphicRadio(
-      isEnabled: filter.acousticButtonStatus(buttonValue),
+
+
+  List<NeumorphicRadio> buildNeumorphicRadio(
+      BuildContext context, Filter filter) {
+    List<NeumorphicRadio> radioButtonsList = new List();
+soundWieghtGroup.forEach((element) {
+  if (filter.acousticButtonStatus(element))
+    radioButtonsList.add(NeumorphicRadio(
       style: kRadioButtonStyle(context),
       padding: EdgeInsets.all(5.0),
       groupValue: acoasticGroupValue,
-      value: buttonValue,
+      value: element,
       onChanged: (value) {
-            filter.soundWieght = value;
+        filter.soundWieght = value;
+        if(value!=null)
+        Navigator.pop(context);
       },
       child: Center(
           child: Text(
-        buttonValue.toString(),
-        style: TextStyle(
-          color: NeumorphicTheme.currentTheme(context).defaultTextColor,
-        ),
-      )),
-    );
+            element.toString(),
+            style: TextStyle(
+              color: NeumorphicTheme.currentTheme(context).defaultTextColor,
+            ),
+          )),
+    ),);
+});
+    return radioButtonsList;
   }
 }

@@ -7,6 +7,7 @@ import '../constants.dart';
 
 class RythmicWeightWidget extends StatelessWidget {
   int rythemicGroupValue;
+  List rythmicWieghtGroup=[110,111,101];
 
   @override
   Widget build(BuildContext context) {
@@ -24,33 +25,36 @@ class RythmicWeightWidget extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            buildNeumorphicRadio(context, 110, filter),
-            buildNeumorphicRadio(context, 111, filter),
-            buildNeumorphicRadio(context, 101, filter),
+           ... buildNeumorphicRadio(context, filter),
+
           ],
         );
       }),
     );
   }
 
-  NeumorphicRadio<int> buildNeumorphicRadio(
-      BuildContext context, int buttonValue, Filter filter) {
-    return NeumorphicRadio(
-      isEnabled: filter.rythmicButtonStatus(buttonValue),
-      style: kRadioButtonStyle(context),
-      padding: EdgeInsets.all(10.0),
-      groupValue: rythemicGroupValue,
-      value: buttonValue,
-      onChanged: (value) {
-        filter.rythmicWieght = value;
-      },
-      child: Center(
-          child: Text(
-        buttonValue.toString(),
-        style: TextStyle(
-          color: NeumorphicTheme.currentTheme(context).defaultTextColor,
-        ),
-      )),
-    );
+  List<NeumorphicRadio> buildNeumorphicRadio(
+      BuildContext context, Filter filter) {
+    List<NeumorphicRadio> radioButtonsList = new List();
+    rythmicWieghtGroup.forEach((element) {
+      if (filter.rythmicButtonStatus(element))
+        radioButtonsList.add(NeumorphicRadio(
+          style: kRadioButtonStyle(context),
+          padding: EdgeInsets.all(10.0),
+          groupValue: rythemicGroupValue,
+          value: element,
+          onChanged: (value) {
+            filter.rythmicWieght = value;
+          },
+          child: Center(
+              child: Text(
+                element.toString(),
+                style: TextStyle(
+                  color: NeumorphicTheme.currentTheme(context).defaultTextColor,
+                ),
+              )),
+        ));
+    });
+    return radioButtonsList;
   }
 }

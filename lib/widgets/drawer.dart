@@ -94,15 +94,107 @@ class AppDrawer extends StatelessWidget {
               ),
               AcoasticWeightWidget(),
               SizedBox(
-                height: 25,
+                height: 10,
+              ),
+              FlatButton(
+                child: ListTile(
+                  title: Text(
+                    'معلومات عن التطبيق',
+                    style: TextStyle(
+                      color: NeumorphicTheme.currentTheme(context)
+                          .defaultTextColor,
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.info_outline,
+                    color:
+                        NeumorphicTheme.currentTheme(context).defaultTextColor,
+                  ),
+                ),
+                onPressed: () {
+                  _showModalBottomSheet(context, NeumorphicTheme.of(context));
+                },
               ),
               SizedBox(
-                height: 25,
+                height: 5,
               ),
             ],
           ),
         ),
       ),
     ));
+  }
+
+  void _showModalBottomSheet(
+      BuildContext context, NeumorphicThemeInherited themeData) {
+    showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      enableDrag: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: 300.0,
+          child: Neumorphic(
+            style: NeumorphicStyle(
+              color:
+                  themeData.isUsingDark ? Color(0xFF30353A) : Color(0xFFF6F5F0),
+              surfaceIntensity: 0.25,
+              shape: NeumorphicShape.concave,
+              oppositeShadowLightSource: false,
+            ),
+            boxShape: NeumorphicBoxShape.roundRect(
+              BorderRadius.circular(10.0),
+            ),
+            padding: EdgeInsets.all(10.0),
+            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+            child: Neumorphic(
+              style: NeumorphicStyle(
+                color: themeData.isUsingDark
+                    ? Color(0xFF30353A)
+                    : Color(0xFFF6F5F0),
+                surfaceIntensity: 0.25,
+                shape: NeumorphicShape.concave,
+                oppositeShadowLightSource: false,
+              ),
+              boxShape: NeumorphicBoxShape.roundRect(
+                BorderRadius.circular(10.0),
+              ),
+              padding: EdgeInsets.all(10.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ListTile(
+                    title: Text(
+                      'فكرة التطبيق',
+                      style: TextStyle(
+                        color: themeData.isUsingDark
+                            ? Color(0xFFBDBEBF)
+                            : Color(0xFF060709),
+                      ),
+                    ),
+                    leading: Icon(
+                      Icons.info_outline,
+                      color: themeData.isUsingDark
+                          ? Color(0xFFBDBEBF)
+                          : Color(0xFF060709),
+                    ),
+                  ),
+                  Text(
+                    'للأستاذ صلاح احمد بلعلا',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: themeData.isUsingDark
+                          ? Color(0xFFBDBEBF)
+                          : Color(0xFF060709),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
   }
 }
