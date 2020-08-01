@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-import 'AcousticWeightWidget.dart';
-import 'RythmicWeightWidget.dart';
-import 'SokonTypeWidget.dart';
+import 'WordTypeWidget.dart';
+import 'WordWeightWidget.dart';
+import 'WordLettersWidget.dart';
 
 class AppDrawer extends StatelessWidget {
   const AppDrawer({
@@ -16,39 +16,21 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
         child: SafeArea(
       child: Neumorphic(
-        boxShape: NeumorphicBoxShape.roundRect(
-          BorderRadius.circular(5.0),
+        style: NeumorphicStyle(
+          boxShape: NeumorphicBoxShape.roundRect(
+            BorderRadius.circular(10.0),
+          ),
         ),
         padding: EdgeInsets.all(20.0),
         child: Neumorphic(
-          boxShape: NeumorphicBoxShape.roundRect(
-            BorderRadius.circular(10.0),
+          style: NeumorphicStyle(
+            boxShape: NeumorphicBoxShape.roundRect(
+              BorderRadius.circular(10.0),
+            ),
           ),
           padding: EdgeInsets.all(10.0),
           child: Column(
             children: <Widget>[
-              ListTile(
-                leading: Icon(
-                  IconData(
-                    1781,
-                  ),
-                  size: 28,
-                  color: NeumorphicTheme.currentTheme(context).defaultTextColor,
-                ),
-                title: Text(
-                  'نوع السكون',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color:
-                        NeumorphicTheme.currentTheme(context).defaultTextColor,
-                  ),
-                ),
-                onTap: () {
-                  // Navigator.pop(context);
-                  // Navigator.pushNamed(context, '/');
-                },
-              ),
-              SokonTypeWidget(),
               ListTile(
                 leading: Icon(
                   IconData(
@@ -70,51 +52,7 @@ class AppDrawer extends StatelessWidget {
                   // Navigator.pushNamed(context, '/');
                 },
               ),
-              RythmicWeightWidget(),
-              ListTile(
-                leading: Icon(
-                  IconData(
-                    64413,
-                  ),
-                  size: 28,
-                  color: NeumorphicTheme.currentTheme(context).defaultTextColor,
-                ),
-                title: Text(
-                  'الوزن الصوتي',
-                  style: TextStyle(
-                    fontSize: 18,
-                    color:
-                        NeumorphicTheme.currentTheme(context).defaultTextColor,
-                  ),
-                ),
-                onTap: () {
-                  //Navigator.pop(context);
-                  //Navigator.pushNamed(context, '/');
-                },
-              ),
-              AcoasticWeightWidget(),
-              SizedBox(
-                height: 10,
-              ),
-              FlatButton(
-                child: ListTile(
-                  title: Text(
-                    'معلومات عن التطبيق',
-                    style: TextStyle(
-                      color: NeumorphicTheme.currentTheme(context)
-                          .defaultTextColor,
-                    ),
-                  ),
-                  leading: Icon(
-                    Icons.info_outline,
-                    color:
-                        NeumorphicTheme.currentTheme(context).defaultTextColor,
-                  ),
-                ),
-                onPressed: () {
-                  _showModalBottomSheet(context, NeumorphicTheme.of(context));
-                },
-              ),
+              Expanded(child: WordWeightWidget()),
               SizedBox(
                 height: 5,
               ),
@@ -136,28 +74,28 @@ class AppDrawer extends StatelessWidget {
           height: 300.0,
           child: Neumorphic(
             style: NeumorphicStyle(
+              boxShape: NeumorphicBoxShape.roundRect(
+                BorderRadius.circular(10.0),
+              ),
               color:
                   themeData.isUsingDark ? Color(0xFF30353A) : Color(0xFFF6F5F0),
               surfaceIntensity: 0.25,
               shape: NeumorphicShape.concave,
               oppositeShadowLightSource: false,
             ),
-            boxShape: NeumorphicBoxShape.roundRect(
-              BorderRadius.circular(10.0),
-            ),
             padding: EdgeInsets.all(10.0),
             margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
             child: Neumorphic(
               style: NeumorphicStyle(
+                boxShape: NeumorphicBoxShape.roundRect(
+                  BorderRadius.circular(10.0),
+                ),
                 color: themeData.isUsingDark
                     ? Color(0xFF30353A)
                     : Color(0xFFF6F5F0),
                 surfaceIntensity: 0.25,
                 shape: NeumorphicShape.concave,
                 oppositeShadowLightSource: false,
-              ),
-              boxShape: NeumorphicBoxShape.roundRect(
-                BorderRadius.circular(10.0),
               ),
               padding: EdgeInsets.all(10.0),
               child: Column(

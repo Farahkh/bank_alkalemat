@@ -1,24 +1,22 @@
 class WordModel {
-  String id;
   String word;
-  String sokonType;
-  String rythmicWieght;
-  String soundWieght;
+  int word_letters;
+  int word_type;
+  int word_wieght;
 
   WordModel(
-      {this.id,
+      {
       this.word,
-      this.sokonType,
-      this.rythmicWieght,
-      this.soundWieght});
+      this.word_letters,
+      this.word_type,
+      this.word_wieght});
 
   factory WordModel.fromJson(Map<String, dynamic> parsedJson) {
     return WordModel(
-      id: parsedJson['المعرف'] as String,
-      word: parsedJson['الكلمات'] as String,
-      sokonType: parsedJson['نوع_السكون'] as String,
-      rythmicWieght: parsedJson['الوزن_الايقاعي'] as String,
-      soundWieght: parsedJson['الوزن_الصوتي'] as String,
+      word: parsedJson['الكلمة'] as String,
+      word_letters: parsedJson['حروف الكلمة'] as int,
+      word_type: parsedJson['نوع الكلمة'] as int,
+      word_wieght: parsedJson['وزن الكلمة'] as int,
     );
   }
 }

@@ -5,144 +5,157 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'WordsBankModel.dart';
 
 class Filter with ChangeNotifier {
-  int _sokonType;
-  int _rythmicWieght;
-  int _soundWieght;
+  int _wordLetters;
+  int _wordWieght;
+  int _wordType;
   Map params = new Map<String, int>();
   List<WordModel> words;
-  List soundActiveButtons = new List();
-  List sokonActiveButtons = new List();
-  List rythmicActiveButtons = new List();
+  List typeActiveButtons = new List();
+  List lettersActiveButtons = new List();
+  List weightActiveButtons = new List();
 
   Filter() {
     loadPreferences();
   }
 
-  int get sokonType => _sokonType;
 
-  int get rythmicWieght => _rythmicWieght;
 
-  int get soundWieght => _soundWieght;
+  int get wordLetters => _wordLetters;
 
-  set sokonType(int value) {
-    _sokonType = value;
-    if (_sokonType != null) {
-      params.update('sokonType', (e) => _sokonType, ifAbsent: () => _sokonType);
+  int get wordWieght => _wordWieght;
+
+  int get wordType => _wordType;
+
+  set wordLetters(int value) {
+    _wordLetters = value;
+    if (_wordLetters != null) {
+      params.update('letters', (e) => _wordLetters, ifAbsent: () => _wordLetters);
     } else {
-      params.remove('sokonType');
-      sokonActiveButtons.clear();
+      params.remove('letters');
+      lettersActiveButtons.clear();
     }
     notifyListeners();
     savePreferences();
   }
 
-  set rythmicWieght(int value) {
-    _rythmicWieght = value;
-    if (_rythmicWieght != null) {
-      params.update('rythmicWieght', (e) => _rythmicWieght,
-          ifAbsent: () => _rythmicWieght);
+  set wordWieght(int value) {
+    _wordWieght = value;
+    if (_wordWieght != null) {
+      params.update('wieght', (e) => _wordWieght,
+          ifAbsent: () => _wordWieght);
     } else {
-      params.remove('rythmicWieght');
-      rythmicActiveButtons.clear();
+      params.remove('wieght');
+      weightActiveButtons.clear();
     }
     notifyListeners();
     savePreferences();
   }
 
-  set soundWieght(int value) {
-    _soundWieght = value;
-    if (_soundWieght != null) {
-      params.update('soundWieght', (e) => _soundWieght,
-          ifAbsent: () => _soundWieght);
+  set wordType(int value) {
+    _wordType = value;
+    if (_wordType != null) {
+      params.update('type', (e) => _wordType,
+          ifAbsent: () => _wordType);
     } else {
-      params.remove('soundWieght');
-      soundActiveButtons.clear();
+      params.remove('type');
+      typeActiveButtons.clear();
     }
     notifyListeners();
     savePreferences();
+  }
+
+  void reset(){
+    params.clear();
+     _wordLetters = 0;
+     _wordWieght= 0;
+     _wordType= 0;
+
+     typeActiveButtons.clear();
+     lettersActiveButtons.clear();
+     weightActiveButtons.clear();
   }
 
   savePreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setInt('sokonType', _sokonType);
-    prefs.setInt('rythmicWieght', _rythmicWieght);
-    prefs.setInt('soundWieght', _soundWieght);
+    prefs.setInt('letters', _wordLetters);
+    prefs.setInt('wieght', _wordWieght);
+    prefs.setInt('type', _wordType);
   }
 
   loadPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int sokonType = prefs.getInt('sokonType');
-    int rythmicWieght = prefs.getInt('rythmicWieght');
-    int soundWieght = prefs.getInt('soundWieght');
+    int wordLetters = prefs.getInt('letters');
+    int wordWeight = prefs.getInt('wieght');
+    int wordType = prefs.getInt('type');
 
-    if (sokonType != null) _sokonType = sokonType;
-    if (rythmicWieght != null) _rythmicWieght = rythmicWieght;
-    if (soundWieght != null) _soundWieght = soundWieght;
+    if (wordLetters != null) _wordLetters = wordLetters;
+    if (wordWeight != null) _wordWieght = wordWeight;
+    if (wordType != null) _wordType = wordType;
   }
 
   WordBankModel filterList(WordBankModel wordsList) {
     for (int i = 0; i <= params.length - 1; i++) {
       if (i == 0) {
         switch (params.keys.elementAt(0)) {
-          case 'sokonType':
+          case 'letters':
             words = wordsList.words
-                .where((e) => e.sokonType == params['sokonType'].toString() )
+                .where((e) => e.word_letters == params['letters'] )
                 .toList();
             break;
-          case 'rythmicWieght':
+          case 'wieght':
             words = wordsList.words
                 .where((e) =>
-                    e.rythmicWieght == params['rythmicWieght'].toString())
+                    e.word_type == params['wieght'])
                 .toList();
             break;
-          case 'soundWieght':
+          case 'type':
             words = wordsList.words
-                .where((e) => e.soundWieght == params['soundWieght'].toString())
+                .where((e) => e.word_wieght == params['type'])
                 .toList();
             break;
         }
       } else {
         switch (params.keys.elementAt(i)) {
-          case 'sokonType':
+          case 'letters':
             words = words
-                .where((e) => e.sokonType == params['sokonType'].toString())
+                .where((e) => e.word_letters == params['letters'])
                 .toList();
             break;
-          case 'rythmicWieght':
+          case 'wieght':
             words = words
                 .where((e) =>
-                    e.rythmicWieght == params['rythmicWieght'].toString())
+                    e.word_wieght == params['wieght'])
                 .toList();
             break;
-          case 'soundWieght':
+          case 'type':
             words = words
-                .where((e) => e.soundWieght == params['soundWieght'].toString())
+                .where((e) => e.word_type == params['type'])
                 .toList();
             break;
         }
       }
     }
-    activeButtonsList(words);
+//    activeButtonsList(words);
     return WordBankModel(words: words);
   }
 
   void activeButtonsList(List wordsList) {
-    sokonActiveButtons.clear();
-    soundActiveButtons.clear();
-    rythmicActiveButtons.clear();
+    lettersActiveButtons.clear();
+    typeActiveButtons.clear();
+    weightActiveButtons.clear();
     wordsList.forEach((element) {
-      sokonActiveButtons.add(element.sokonType);
-      rythmicActiveButtons.add(element.rythmicWieght);
-      soundActiveButtons.add(element.soundWieght);
+      lettersActiveButtons.add(element.word_letters);
+      weightActiveButtons.add(element.word_type);
+      typeActiveButtons.add(element.word_wieght);
     });
   }
 
-  bool acousticButtonStatus(int buttonValue) {
+  bool typeButtonStatus(int buttonValue) {
     if (params.isEmpty) {
       return true;
     } else {
-      if (soundActiveButtons.isNotEmpty) {
-        if (soundActiveButtons.contains(buttonValue.toString()))
+      if (typeActiveButtons.isNotEmpty) {
+        if (typeActiveButtons.contains(buttonValue))
           return true;
         else
           return false;
@@ -151,12 +164,12 @@ class Filter with ChangeNotifier {
     }
   }
 
-  bool sokonButtonStatus(int buttonValue) {
+  bool lettersButtonStatus(int buttonValue) {
     if (params.isEmpty) {
       return true;
     } else {
-      if (sokonActiveButtons.isNotEmpty) {
-        if (sokonActiveButtons.contains(buttonValue.toString()))
+      if (lettersActiveButtons.isNotEmpty) {
+        if (lettersActiveButtons.contains(buttonValue))
           return true;
         else
           return false;
@@ -165,12 +178,12 @@ class Filter with ChangeNotifier {
     }
   }
 
-  bool rythmicButtonStatus(int buttonValue) {
+  bool weightButtonStatus(int buttonValue) {
     if (params.isEmpty) {
       return true;
     } else {
-      if (rythmicActiveButtons.isNotEmpty) {
-        if (rythmicActiveButtons.contains(buttonValue.toString()))
+      if (weightActiveButtons.isNotEmpty) {
+        if (weightActiveButtons.contains(buttonValue))
           return true;
         else
           return false;

@@ -3,11 +3,11 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 
 import '../Filterparameters.dart';
+import '../WordsBankModel.dart';
 import '../constants.dart';
 
-class RythmicWeightWidget extends StatelessWidget {
-  int rythemicGroupValue;
-  List rythmicWieghtGroup=[110,111,101];
+class WordWeightWidget extends StatelessWidget {
+  int weightGroupValue;
 
   @override
   Widget build(BuildContext context) {
@@ -21,30 +21,39 @@ class RythmicWeightWidget extends StatelessWidget {
         depth: -5.0,
       ),
       child: Consumer<Filter>(builder: (context, filter, child) {
-        rythemicGroupValue = filter.rythmicWieght;
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-           ... buildNeumorphicRadio(context, filter),
-
-          ],
-        );
+        weightGroupValue = filter.wordWieght;
+        return FutureBuilder(
+            future: WordBankModel.LoadWordWeight(filter),
+            builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+              if (snapshot.hasData) {
+                List wordWieghtGroup = snapshot.data;
+                wordWieghtGroup.sort((a, b) => a. compareTo(b));
+                return ListView.builder(
+                  itemCount: buildNeumorphicRadio(context, filter, wordWieghtGroup).length,
+                  itemBuilder: (context, index) {
+                    return buildNeumorphicRadio(context, filter, wordWieghtGroup)[index];
+                  },
+                );
+              } else {
+                return Text("${snapshot.error}");
+              }
+            });
       }),
     );
   }
 
   List<NeumorphicRadio> buildNeumorphicRadio(
-      BuildContext context, Filter filter) {
+      BuildContext context, Filter filter, List<dynamic> wordWieghtGroup) {
     List<NeumorphicRadio> radioButtonsList = new List();
-    rythmicWieghtGroup.forEach((element) {
-      if (filter.rythmicButtonStatus(element))
+    wordWieghtGroup.forEach((element) {
+      if (filter.weightButtonStatus(element))
         radioButtonsList.add(NeumorphicRadio(
           style: kRadioButtonStyle(context),
           padding: EdgeInsets.all(10.0),
-          groupValue: rythemicGroupValue,
+          groupValue: weightGroupValue,
           value: element,
           onChanged: (value) {
-            filter.rythmicWieght = value;
+            filter.wordWieght = value;
           },
           child: Center(
               child: Text(

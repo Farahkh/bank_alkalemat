@@ -1,15 +1,18 @@
-import 'package:bankalkalemat/WordsBankModel.dart';
-import 'package:bankalkalemat/widgets/drawer.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:bankalkalemat/widgets/WordTypeWidget.dart';
+import 'package:bankalkalemat/widgets/WordWeightWidget.dart';
+import 'package:bankalkalemat/widgets/WordLettersWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
-import 'package:provider/provider.dart';
 
-import '../Filterparameters.dart';
-
-class HomePage extends StatelessWidget {
+class HomePage extends StatelessWidget{
   HomePage({Key key, this.title}) : super(key: key);
   final String title;
+
+//  @override
+//  void initState(){
+//Provider.of<Filter>(context)
+//    super.initState();
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +21,10 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
               onPressed: () {
-                NeumorphicTheme.of(context).usedTheme =
-                    NeumorphicTheme.isUsingDark(context)
-                        ? UsedTheme.LIGHT
-                        : UsedTheme.DARK;
+                NeumorphicTheme.of(context).themeMode =
+                NeumorphicTheme.isUsingDark(context)
+                    ? ThemeMode.light
+                    : ThemeMode.dark;
               },
               icon: NeumorphicTheme.isUsingDark(context)
                   ? Icon(Icons.wb_sunny)
@@ -29,301 +32,177 @@ class HomePage extends StatelessWidget {
         ],
         title: Text(title),
       ),
-      drawer: AppDrawer(),
-      body: NeumorphicBackground(
-        child: Center(
-          child: Consumer<Filter>(builder: (context, filter, child) {
-
-            return filter.params.isEmpty?buildFutureBuilderWithoutFilter(filter):buildFutureBuilderWithFilter(context, filter);
-          }),
+      body: Neumorphic(
+        style: NeumorphicStyle(
+          boxShape: NeumorphicBoxShape.roundRect(
+            BorderRadius.circular(10.0),
+          ),
+        ),
+        padding: EdgeInsets.all(20.0),
+        child: Neumorphic(
+          style: NeumorphicStyle(
+            boxShape: NeumorphicBoxShape.roundRect(
+              BorderRadius.circular(10.0),
+            ),
+          ),
+          padding: EdgeInsets.all(10.0),
+          child: Column(mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+              Center(
+                child: ListTile(
+                  leading: Icon(
+                    IconData(
+                      1781,
+                    ),
+                    size: 28,
+                    color: NeumorphicTheme.currentTheme(context).defaultTextColor,
+                  ),
+                  title: Text(
+                    'حروف الكلمة',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color:
+                      NeumorphicTheme.currentTheme(context).defaultTextColor,
+                    ),
+                  ),
+                  onTap: () {
+                    // Navigator.pop(context);
+                    // Navigator.pushNamed(context, '/');
+                  },
+                ),
+              ),
+              //TODO I need to change this class according to the new data
+              Expanded(flex: 3,child: WordLettersWidget()),
+              Center(
+                child: ListTile(
+                  leading: Icon(
+                    IconData(
+                      1769,
+                    ),
+                    size: 28,
+                    color: NeumorphicTheme.currentTheme(context).defaultTextColor,
+                  ),
+                  title: Text(
+                    'نوع الكلمة',
+                    style: TextStyle(
+                      fontSize: 18,
+                      color:
+                      NeumorphicTheme.currentTheme(context).defaultTextColor,
+                    ),
+                  ),
+                  onTap: () {
+                    // Navigator.pop(context);
+                    // Navigator.pushNamed(context, '/');
+                  },
+                ),
+              ),
+              //TODO I need to change this class according to the new data
+              Expanded(flex: 5,child: WordTypeWidget()),
+              SizedBox(
+                height: 10,
+              ),
+//              FlatButton(
+//                child: ListTile(
+//                  title: Text(
+//                    'معلومات عن التطبيق',
+//                    style: TextStyle(
+//                      color: NeumorphicTheme.currentTheme(context)
+//                          .defaultTextColor,
+//                    ),
+//                  ),
+//                  leading: Icon(
+//                    Icons.info_outline,
+//                    color:
+//                    NeumorphicTheme.currentTheme(context).defaultTextColor,
+//                  ),
+//                ),
+//                onPressed: () {
+//                  _showModalBottomSheet(context, NeumorphicTheme.of(context));
+//                },
+//              ),
+              SizedBox(
+                height: 5,
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  FutureBuilder<WordBankModel> buildFutureBuilderWithoutFilter(Filter filter) {
-    return FutureBuilder(
-              future: WordBankModel.getData(),
-              builder: (BuildContext context,
-                  AsyncSnapshot<WordBankModel> snapshot) {
-                WordBankModel wordsList = snapshot.data;
-                if (snapshot.hasData) {
-                  if (filter.params.isNotEmpty) {
-                    wordsList = filter.filterList(wordsList);
-                  }
-                  return ListView.builder(
-                    itemCount: wordsList.words.length,
-                    itemBuilder: (context, index) {
-                      return Neumorphic(
-                        style: NeumorphicStyle(
-                          surfaceIntensity: 0.25,
-                          shape: NeumorphicShape.concave,
-                          oppositeShadowLightSource: false,
-                        ),
-                        boxShape: NeumorphicBoxShape.roundRect(
-                          BorderRadius.circular(10.0),
-                        ),
-                        padding: EdgeInsets.all(10.0),
-                        margin: EdgeInsets.all(10.0),
-                        child: Neumorphic(
-                          style: NeumorphicStyle(
-                            surfaceIntensity: 0.25,
-                            shape: NeumorphicShape.concave,
-                            oppositeShadowLightSource: false,
-                          ),
-                          boxShape: NeumorphicBoxShape.roundRect(
-                            BorderRadius.circular(10.0),
-                          ),
-                          padding: EdgeInsets.all(20.0),
-                          child: Column(children: <Widget>[
-                            Text(
-                              '${wordsList.words[index].word}',
-                              style: TextStyle(
-                                color: NeumorphicTheme.currentTheme(context)
-                                    .defaultTextColor,
-                                fontSize: 36,
-                              ),
-                            ),
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text(
-                                  'نوع السكون',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color:
-                                        NeumorphicTheme.currentTheme(context)
-                                            .defaultTextColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'الوزن الإيقاعي',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color:
-                                        NeumorphicTheme.currentTheme(context)
-                                            .defaultTextColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'الوزن الصوتي',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color:
-                                        NeumorphicTheme.currentTheme(context)
-                                            .defaultTextColor,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Divider(
-                              height: 5,
-                              color: NeumorphicTheme.accentColor(context),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Text(
-                                  '${wordsList.words[index].sokonType}',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color:
-                                        NeumorphicTheme.currentTheme(context)
-                                            .defaultTextColor,
-                                  ),
-                                ),
-                                Text(
-                                  '${wordsList.words[index].rythmicWieght}',
-                                  style: TextStyle(
-                                    color:
-                                        NeumorphicTheme.currentTheme(context)
-                                            .defaultTextColor,
-                                    fontSize: 12,
-                                  ),
-                                ),
-                                Text(
-                                  '${wordsList.words[index].soundWieght}',
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color:
-                                        NeumorphicTheme.currentTheme(context)
-                                            .defaultTextColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ]),
-                        ),
-                      );
-                    },
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("${snapshot.error}");
-                }
-                return CircularProgressIndicator();
-              });
-  }
+}
 
-  Column buildFutureBuilderWithFilter(BuildContext context,Filter filter) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-      Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          SizedBox(
-            height: 20,
+void _showModalBottomSheet(
+    BuildContext context, NeumorphicThemeInherited themeData) {
+  showModalBottomSheet(
+    backgroundColor: Colors.transparent,
+    enableDrag: true,
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        height: 300.0,
+        child: Neumorphic(
+          style: NeumorphicStyle(
+            boxShape: NeumorphicBoxShape.roundRect(
+              BorderRadius.circular(10.0),
+            ),
+            color:
+            themeData.isUsingDark ? Color(0xFF30353A) : Color(0xFFF6F5F0),
+            surfaceIntensity: 0.25,
+            shape: NeumorphicShape.concave,
+            oppositeShadowLightSource: false,
           ),
-          Row(mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text(
-                'نوع السكون',
-                style: TextStyle(
-                  fontSize: 16,
-                  color:
-                  NeumorphicTheme.currentTheme(context)
-                      .defaultTextColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'الوزن الإيقاعي',
-                style: TextStyle(
-                  fontSize: 16,
-                  color:
-                  NeumorphicTheme.currentTheme(context)
-                      .defaultTextColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                'الوزن الصوتي',
-                style: TextStyle(
-                  fontSize: 16,
-                  color:
-                  NeumorphicTheme.currentTheme(context)
-                      .defaultTextColor,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Divider(
-            height: 5,
-            color: NeumorphicTheme.accentColor(context),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Row(
-            mainAxisAlignment:
-            MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text(
-                '${filter.params['sokonType']}',
-                style: TextStyle(
-                  fontSize: 16,
-                  color:
-                  NeumorphicTheme.currentTheme(context)
-                      .defaultTextColor,
-                ),
-              ),
-              Text(
-                '${filter.params['soundWieght']}',
-                style: TextStyle(
-                  color:
-                  NeumorphicTheme.currentTheme(context)
-                      .defaultTextColor,
-                  fontSize: 16,
-                ),
-              ),
-              Text(
-                '${filter.params['rythmicWieght']}',
-                style: TextStyle(
-                  fontSize: 16,
-                  color:
-                  NeumorphicTheme.currentTheme(context)
-                      .defaultTextColor,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
-      Expanded(
-        child: FutureBuilder(
-            future: WordBankModel.getData(),
-            builder: (BuildContext context,
-                AsyncSnapshot<WordBankModel> snapshot) {
-              WordBankModel wordsList = snapshot.data;
-              if (snapshot.hasData) {
-                if (filter.params.isNotEmpty) {
-                  wordsList = filter.filterList(wordsList);
-                }
-                return ListView.builder(
-                  itemCount: wordsList.words.length,
-                  itemBuilder: (context, index) {
-                    return Neumorphic(
-                      style: NeumorphicStyle(
-                        surfaceIntensity: 0.25,
-                        shape: NeumorphicShape.concave,
-                        oppositeShadowLightSource: false,
-                      ),
-                      boxShape: NeumorphicBoxShape.roundRect(
-                        BorderRadius.circular(10.0),
-                      ),
-                      padding: EdgeInsets.all(10.0),
-                      margin: EdgeInsets.all(10.0),
-                      child: Neumorphic(
-                        style: NeumorphicStyle(
-                          surfaceIntensity: 0.25,
-                          shape: NeumorphicShape.concave,
-                          oppositeShadowLightSource: false,
-                        ),
-                        boxShape: NeumorphicBoxShape.roundRect(
-                          BorderRadius.circular(10.0),
-                        ),
-                        padding: EdgeInsets.all(20.0),
-                        child: Column(children: <Widget>[
-                          Text(
-                            '${wordsList.words[index].word}',
-                            style: TextStyle(
-                              color: NeumorphicTheme.currentTheme(context)
-                                  .defaultTextColor,
-                              fontSize: 36,
-                            ),
-                          ),
 
-                        ]),
-                      ),
-                    );
-                  },
-                );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              }
-              return CircularProgressIndicator();
-            }),
-      ),
-    ],);
-  }
+          padding: EdgeInsets.all(10.0),
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+          child: Neumorphic(
+            style: NeumorphicStyle(
+              boxShape: NeumorphicBoxShape.roundRect(
+                BorderRadius.circular(10.0),
+              ),
+              color: themeData.isUsingDark
+                  ? Color(0xFF30353A)
+                  : Color(0xFFF6F5F0),
+              surfaceIntensity: 0.25,
+              shape: NeumorphicShape.concave,
+              oppositeShadowLightSource: false,
+            ),
+
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                ListTile(
+                  title: Text(
+                    'فكرة التطبيق',
+                    style: TextStyle(
+                      color: themeData.isUsingDark
+                          ? Color(0xFFBDBEBF)
+                          : Color(0xFF060709),
+                    ),
+                  ),
+                  leading: Icon(
+                    Icons.info_outline,
+                    color: themeData.isUsingDark
+                        ? Color(0xFFBDBEBF)
+                        : Color(0xFF060709),
+                  ),
+                ),
+                Text(
+                  'للأستاذ صلاح احمد بلعلا',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: themeData.isUsingDark
+                        ? Color(0xFFBDBEBF)
+                        : Color(0xFF060709),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    },
+  );
 }
